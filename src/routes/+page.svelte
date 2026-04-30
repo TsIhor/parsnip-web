@@ -7,6 +7,7 @@
   import FeaturedRecipesSection from './FeaturedRecipesSection.svelte';
   import CategoriesSection    from './CategoriesSection.svelte';
   import CtaSection           from './CtaSection.svelte';
+  import { reveal }           from '$lib/actions/reveal';
 </script>
 
 <svelte:head>
@@ -15,10 +16,10 @@
 </svelte:head>
 
 <HeroSection />
-<SocialProofSection />
-<HowItWorksSection />
-<OnboardingFlowSection />
-<SkillsSection />
-<FeaturedRecipesSection />
-<CategoriesSection />
-<CtaSection />
+<div use:reveal><SocialProofSection /></div>
+<div use:reveal><HowItWorksSection /></div>
+<div use:reveal><OnboardingFlowSection /></div>
+<div use:reveal><SkillsSection /></div>
+<div use:reveal><FeaturedRecipesSection /></div>
+<div use:reveal><CategoriesSection /></div>
+<div use:reveal><CtaSection /></div>

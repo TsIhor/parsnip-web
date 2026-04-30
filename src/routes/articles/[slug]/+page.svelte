@@ -38,6 +38,14 @@
   </div>
 </section>
 
+{#if article.image}
+  <div class="max-w-3xl mx-auto px-6 -mb-6 relative z-10" style="margin-top: -2rem;">
+    <div class="aspect-[16/7] rounded-2xl overflow-hidden shadow-lg">
+      <img src={article.image} alt={article.title} class="w-full h-full object-cover" />
+    </div>
+  </div>
+{/if}
+
 <!-- Body -->
 <section class="max-w-3xl mx-auto px-6 py-12">
   {#each article.body as section}

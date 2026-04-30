@@ -13,7 +13,7 @@
 
 <a href="/recipes/{recipe.id}"
   class="card bg-base-200 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group overflow-hidden">
-  <figure class="aspect-[4/3] overflow-hidden bg-base-300">
+  <figure class="aspect-[4/3] overflow-hidden bg-base-300 relative">
     {#if imageUrl}
       <img
         src={imageUrl}
@@ -22,6 +22,13 @@
       />
     {:else}
       <div class="w-full h-full flex items-center justify-center text-5xl">🍽️</div>
+    {/if}
+    {#if recipe.recipe_video?.media_url || recipe.recipe_video?.stream_url}
+      <div class="absolute bottom-2 right-2 bg-black/60 rounded-full p-1.5 backdrop-blur-sm">
+        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
     {/if}
   </figure>
   <div class="card-body p-4 gap-2">

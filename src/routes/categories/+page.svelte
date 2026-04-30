@@ -34,7 +34,7 @@
 </svelte:head>
 
 <div class="max-w-6xl mx-auto px-6 py-12">
-  <div class="mb-10">
+  <div class="mb-10 opacity-0 animate-[fadeUp_0.5s_ease_forwards]">
     <h1 class="font-display text-4xl font-bold text-base-content mb-2">Categories</h1>
     <p class="text-base-content/60">Choose a dish type and find the perfect recipe</p>
   </div>
@@ -53,10 +53,11 @@
     </div>
   {:else}
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {#each categories as cat}
+      {#each categories as cat, i}
         <button
           onclick={() => goToRecipes(cat.id)}
-          class="group bg-base-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 text-left"
+          class="group bg-base-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 text-left opacity-0"
+          style="animation: fadeUp 0.5s ease {i * 60}ms forwards"
         >
           <div class="aspect-video bg-base-300 flex items-center justify-center text-6xl">
             🍽️

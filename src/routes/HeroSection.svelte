@@ -4,19 +4,23 @@
 
       <!-- Copy -->
       <div class="order-2 md:order-1">
-        <div class="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6">
+        <div class="inline-flex items-center gap-2 bg-primary/10 text-primary text-sm font-semibold px-4 py-2 rounded-full mb-6
+                    opacity-0 animate-[fadeUp_0.6s_ease_0.1s_forwards]">
           🌿 Skill-based cooking
         </div>
-        <h1 class="font-display text-5xl md:text-6xl font-bold text-base-content leading-tight mb-6">
+        <h1 class="font-display text-5xl md:text-6xl font-bold text-base-content leading-tight mb-6
+                   opacity-0 animate-[fadeUp_0.6s_ease_0.25s_forwards]">
           Cook smarter,<br/>
           not just <em class="text-primary not-italic">harder</em>
         </h1>
-        <p class="text-base-content/60 text-lg leading-relaxed mb-8 max-w-md">
+        <p class="text-base-content/60 text-lg leading-relaxed mb-8 max-w-md
+                  opacity-0 animate-[fadeUp_0.6s_ease_0.4s_forwards]">
           Parsnip teaches you real cooking skills — knife work, heat control, flavour balance — through short daily lessons that build toward the dishes you actually want to make.
         </p>
 
         <!-- Download buttons -->
-        <div class="flex flex-wrap gap-3 mb-8">
+        <div class="flex flex-wrap gap-3 mb-8
+                    opacity-0 animate-[fadeUp_0.6s_ease_0.55s_forwards]">
           <!-- App Store -->
           <a
             href="/download/ios"
@@ -45,13 +49,15 @@
           </a>
         </div>
 
-        <a href="/recipes" class="text-primary text-sm font-medium hover:underline">
+        <a href="/recipes" class="text-primary text-sm font-medium hover:underline
+                                   opacity-0 animate-[fadeUp_0.6s_ease_0.7s_forwards]">
           Browse recipes without the app →
         </a>
       </div>
 
       <!-- Phone mockup -->
-      <div class="order-1 md:order-2 flex justify-center md:justify-end">
+      <div class="order-1 md:order-2 flex justify-center md:justify-end
+                  translate-x-16 opacity-0 animate-[slideInRight_0.8s_ease_0.2s_forwards]">
         <div class="relative w-64 md:w-full">
           <img
             src="/app-mockup.svg"

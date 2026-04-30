@@ -43,16 +43,30 @@
 
 <!-- Articles grid -->
 <section class="max-w-6xl mx-auto px-6 py-12">
+  {#key activeCategory}
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    {#each filtered as article}
+    {#each filtered as article, i}
       {@const cat = articleCategories.find(c => c.id === article.category)}
       <a href="/articles/{article.slug}"
-        class="card bg-base-200 hover:shadow-md transition-all duration-200 group overflow-hidden">
-        <div class="h-1.5 {article.category === 'ingredients' ? 'bg-accent' : article.category === 'techniques' ? 'bg-primary' : 'bg-secondary'}"></div>
-        <div class="card-body p-6">
+        style="opacity:0; animation: fadeUp 0.4s ease {i * 50}ms forwards"
+        class="card bg-base-200 hover:shadow-md transition-shadow duration-300 hover:-translate-y-1 group overflow-hidden">
+        <figure class="aspect-[16/9] overflow-hidden bg-base-300">
+          {#if article.image}
+            <img
+              src={article.image}
+              alt={article.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          {:else}
+            <div class="w-full h-full flex items-center justify-center text-5xl">
+              {cat?.emoji}
+            </div>
+          {/if}
+        </figure>
+        <div class="card-body p-5">
           <div class="flex items-center gap-2 mb-1">
-            <span class="text-lg">{cat?.emoji}</span>
-            <span class="badge badge-ghost text-xs">{cat?.name}</span>
+            <span class="badge badge-ghost text-xs">{cat?.emoji} {cat?.name}</span>
+            <span class="text-xs text-base-content/40 ml-auto">{article.readTime} min read</span>
           </div>
           <h2 class="card-title font-display text-lg leading-snug group-hover:text-primary transition-colors">
             {article.title}
@@ -60,12 +74,10 @@
           <p class="text-base-content/60 text-sm leading-relaxed flex-1">
             {article.excerpt}
           </p>
-          <div class="flex items-center justify-between mt-auto pt-2">
-            <span class="text-xs text-base-content/40">{article.readTime} min read</span>
-            <span class="link link-primary text-sm no-underline group-hover:underline">Read →</span>
-          </div>
+          <span class="link link-primary text-sm no-underline group-hover:underline mt-2">Read →</span>
         </div>
       </a>
     {/each}
   </div>
+  {/key}
 </section>

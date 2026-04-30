@@ -6,6 +6,7 @@ export interface Article {
   excerpt: string;
   category: ArticleCategory;
   readTime: number;
+  image?: string;
   body: Section[];
 }
 
@@ -27,6 +28,7 @@ export const articles: Article[] = [
     excerpt: 'A quick guide to spotting the best produce — what to look for, what to avoid, and why it matters for your cooking.',
     category: 'ingredients',
     readTime: 4,
+    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&q=80',
     body: [
       { text: 'Great cooking starts before you turn on the stove. The quality of your vegetables shapes the flavour of every dish — no amount of seasoning fixes a bad tomato.' },
       { heading: 'Look, smell, feel', text: 'Use all your senses. Fresh vegetables are firm to the touch (with the exception of ripe avocados and tomatoes). Leaves should be crisp, not limp. Smell cut surfaces — they should smell like the vegetable itself, not musty or fermented.' },
@@ -41,6 +43,7 @@ export const articles: Article[] = [
     excerpt: 'Not all cuts are equal — learn which cuts work best for roasting, braising, grilling, and quick pan-frying.',
     category: 'ingredients',
     readTime: 5,
+    image: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80',
     body: [
       { text: 'The single biggest mistake home cooks make with meat is using the wrong cut for the cooking method. A cheap braise cut grilled over high heat becomes shoe leather. The same cut slow-cooked for three hours becomes silk.' },
       { heading: 'Tender cuts — fast heat', text: 'Muscles that do little work (loin, rib, tenderloin) are naturally tender and suit dry-heat methods: grilling, roasting, pan-frying. They cook fast and dry out if overcooked.' },
@@ -55,6 +58,7 @@ export const articles: Article[] = [
     excerpt: 'The olive oil aisle is confusing. Here\'s what the labels mean and which bottle is actually worth buying.',
     category: 'ingredients',
     readTime: 3,
+    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&q=80',
     body: [
       { text: 'Olive oil labelling is one of the most confusing in the grocery store. "Extra virgin", "pure", "light", "cold pressed" — here\'s what each actually means.' },
       { heading: 'Extra virgin (EVOO)', text: 'This is the highest grade. It\'s pressed from fresh olives without heat or chemicals, and has less than 0.8% acidity. It should taste of something — grassy, peppery, fruity. If it tastes like nothing, it\'s old or poor quality. Use for dressings, finishing, and lower-heat cooking.' },
@@ -69,6 +73,7 @@ export const articles: Article[] = [
     excerpt: 'That golden crust on your steak or bread isn\'t just colour — it\'s hundreds of new flavour compounds being created in real time.',
     category: 'techniques',
     readTime: 4,
+    image: 'https://images.unsplash.com/photo-1685578322024-0ffb9b10adb6?w=800&q=80',
     body: [
       { text: 'The Maillard reaction is arguably the most important chemical process in cooking. It\'s what turns a pale piece of chicken into something golden and complex — and understanding it makes you a dramatically better cook.' },
       { heading: 'What it is', text: 'Above 140–165°C, amino acids and reducing sugars react to form hundreds of new flavour and aroma compounds. It\'s why bread has a crust, steak has a sear, and coffee has roasted notes. It\'s not caramelisation (which is sugar-only) — it requires protein.' },
@@ -83,6 +88,7 @@ export const articles: Article[] = [
     excerpt: 'Low heat, a lid, and a little liquid — learn the method that turns the cheapest cuts into the most flavourful meals.',
     category: 'techniques',
     readTime: 5,
+    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80',
     body: [
       { text: 'Braising is a slow, moist-heat method that works by breaking down collagen in tough muscle cuts into gelatin. The result is meat so tender it falls apart, surrounded by a silky, reduced sauce.' },
       { heading: 'The basic method', text: 'Sear the meat on all sides in a heavy pot (Dutch oven is ideal). Remove the meat, sauté aromatics (onion, carrot, celery) in the same fat. Deglaze with wine or stock, scraping up the fond. Return the meat, add enough liquid to come halfway up (not fully cover), put the lid on, and cook low and slow — 140–160°C in the oven, or the lowest gas flame with a heavy lid.' },
@@ -97,6 +103,7 @@ export const articles: Article[] = [
     excerpt: 'You don\'t need to dice like a chef in a movie. You need three cuts done safely and consistently.',
     category: 'techniques',
     readTime: 4,
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80',
     body: [
       { text: 'Most home cooks use one cut for everything — a rough chop. Learning three proper cuts makes your cooking faster, safer, and more even (which means food cooks more evenly too).' },
       { heading: 'The slice', text: 'Use the full length of the blade in a long, forward-and-down motion. Don\'t just press down — drag the blade forward as you cut. Ideal for onions, cabbage, and herbs. Keep your fingers curled in the "claw grip" — knuckles forward, fingertips tucked.' },
@@ -111,6 +118,7 @@ export const articles: Article[] = [
     excerpt: 'Salt isn\'t just about making food salty. Used at the right moment, it transforms texture, draws out flavour, and builds depth.',
     category: 'tips',
     readTime: 4,
+    image: 'https://images.unsplash.com/photo-1518110925495-5fe2fda0442c?w=600&q=80',
     body: [
       { text: 'Salt is the most important seasoning in cooking — and the most misunderstood. "Add salt to taste at the end" is incomplete advice. Salt does different things at different stages of cooking.' },
       { heading: 'Salt early, salt often', text: 'Seasoning in layers — at each stage of cooking — builds more complex flavour than a single large dose at the end. Season the base (onions, garlic) when you add them, season the protein before it hits the pan, taste and adjust as the dish builds.' },
@@ -125,6 +133,7 @@ export const articles: Article[] = [
     excerpt: 'Getting your pan to the right temperature before adding food is a skill that changes everything — here\'s how to read the heat.',
     category: 'tips',
     readTime: 3,
+    image: 'https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=600&q=80',
     body: [
       { text: 'Cooking in a pan that\'s too cold is one of the most common reasons food sticks, steams instead of browns, and tastes flat. Learning to read your pan\'s heat takes practice but pays off immediately.' },
       { heading: 'Heat the pan first', text: 'Place an empty pan over medium to medium-high heat for 1–3 minutes before adding fat. An exception: eggs start in a cold pan with butter. For everything else — heat the pan first.' },
@@ -139,6 +148,7 @@ export const articles: Article[] = [
     excerpt: 'Every cuisine has a base of aromatics that defines its flavour. Understanding these combinations unlocks whole new regions of cooking.',
     category: 'tips',
     readTime: 4,
+    image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&q=80',
     body: [
       { text: 'The foundation of most savoury dishes is a combination of aromatics — vegetables and herbs cooked low and slow in fat to release their flavour before anything else goes in the pan. Get this right and everything built on top tastes better.' },
       { heading: 'The French mirepoix', text: 'Onion, carrot, celery — roughly 2:1:1. The base of soups, stocks, braises, and sauces across French cuisine. Cooked low and slow in butter until soft but not coloured.' },
