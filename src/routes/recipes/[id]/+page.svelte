@@ -8,9 +8,27 @@ import { recipeStore } from '$lib/recipes.store';
 
   let completedSteps = $state(new Set<number>());
   let videoStarted = $state(false);
+  let barBottom = $state(0);
 
   onMount(() => {
     recipeStore.fetchRecipe(data.id);
+
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    function updateBarBottom() {
+      const footerTop = footer!.getBoundingClientRect().top;
+      barBottom = Math.max(0, window.innerHeight - footerTop);
+    }
+
+    window.addEventListener('scroll', updateBarBottom, { passive: true });
+    window.addEventListener('resize', updateBarBottom, { passive: true });
+    updateBarBottom();
+
+    return () => {
+      window.removeEventListener('scroll', updateBarBottom);
+      window.removeEventListener('resize', updateBarBottom);
+    };
   });
 
   $effect(() => {
@@ -97,7 +115,7 @@ import { recipeStore } from '$lib/recipes.store';
 {:else if $storeState.recipe}
   {@const recipe = $storeState.recipe}
 
-  <article class="max-w-4xl mx-auto px-6 py-12">
+  <article class="max-w-4xl mx-auto px-6 py-12 pb-24">
     <!-- Breadcrumb -->
     <div class="breadcrumbs text-sm text-base-content/50 mb-8">
       <ul>
@@ -122,27 +140,27 @@ import { recipeStore } from '$lib/recipes.store';
     <p class="text-base-content/60 text-lg leading-relaxed mb-8">{recipe.description}</p>
 
     <!-- Meta stats -->
-    <div class="stats stats-horizontal shadow border border-base-300 mb-8 flex-wrap">
+    <div class="stats stats-horizontal shadow border border-base-300 mb-8 w-full">
       {#if recipe.time}
-        <div class="stat">
-          <div class="stat-figure text-xl">⏱</div>
-          <div class="stat-title">Time</div>
-          <div class="stat-value text-lg">{recipe.time}</div>
+        <div class="stat py-1">
+          <div class="stat-figure text-lg">⏱</div>
+          <div class="stat-title text-xs">Time</div>
+          <div class="stat-value text-base">{recipe.time}</div>
         </div>
       {/if}
       {#if recipe.servings}
-        <div class="stat">
-          <div class="stat-figure text-xl">👥</div>
-          <div class="stat-title">Servings</div>
-          <div class="stat-value text-lg">{recipe.servings}</div>
+        <div class="stat py-1">
+          <div class="stat-figure text-lg">👥</div>
+          <div class="stat-title text-xs">Servings</div>
+          <div class="stat-value text-base">{recipe.servings}</div>
         </div>
       {/if}
       {#if recipe.difficulty}
-        <div class="stat">
-          <div class="stat-figure text-xl">📊</div>
-          <div class="stat-title">Difficulty</div>
-          <div class="stat-value text-lg">
-            <span class="badge {diffVariant[recipe.difficulty] ?? 'badge-ghost'} badge-lg">
+        <div class="stat py-2">
+          <div class="stat-figure text-lg">📊</div>
+          <div class="stat-title text-xs">Difficulty</div>
+          <div class="stat-value text-base">
+            <span class="badge {diffVariant[recipe.difficulty] ?? 'badge-ghost'} badge-md">
               {recipe.difficulty}
             </span>
           </div>
@@ -216,52 +234,53 @@ import { recipeStore } from '$lib/recipes.store';
       </div>
     </div>
 
-    <!-- Skills CTA -->
-    <div class="mt-16 rounded-3xl bg-base-200 px-8 py-10">
-      <div class="flex flex-col md:flex-row md:items-center gap-8">
-        <div class="flex-1">
-          <p class="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Parsnip App</p>
-          <h2 class="font-display text-2xl font-bold text-base-content mb-2">
-            Find a step tricky?
-          </h2>
-          <p class="text-base-content/60 text-sm leading-relaxed max-w-sm">
-            Practice knife work, heat control, flavour balance and more through short daily lessons that build real cooking confidence.
-          </p>
-          <div class="flex flex-wrap gap-3 mt-6">
+  </article>
+
+  <!-- Skills CTA — sticky bottom bar -->
+  <div class="fixed left-0 right-0 z-40 bg-base-100/90 backdrop-blur-md border-t border-base-300 shadow-lg transition-[bottom] duration-150 ease-out" style="bottom: {barBottom}px">
+    <div class="max-w-4xl mx-auto px-6 py-3">
+      <!-- mobile: stack vertically; sm+: single row -->
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <!-- text -->
+        <div class="text-center sm:text-left">
+          <p class="font-semibold text-base-content text-sm leading-tight">Find a step tricky?</p>
+          <p class="text-xs text-base-content/50">Build real cooking skills with Parsnip</p>
+        </div>
+        <!-- skills + buttons -->
+        <div class="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:justify-end sm:gap-3">
+          <!-- all 5 skill icons -->
+          <div class="flex gap-1.5">
+            {#each [
+              { icon: '/skills/shopping.png',    name: 'Shopping'    },
+              { icon: '/skills/prepping.png',    name: 'Prepping'    },
+              { icon: '/skills/making.png',      name: 'Making'      },
+              { icon: '/skills/ingredients.png', name: 'Ingredients' },
+              { icon: '/skills/techniques.png',  name: 'Techniques'  },
+            ] as skill}
+              <div class="w-8 h-8 rounded-xl bg-base-200 flex items-center justify-center">
+                <img src={skill.icon} alt={skill.name} class="w-5 h-5 object-contain" />
+              </div>
+            {/each}
+          </div>
+          <!-- store buttons -->
+          <div class="flex gap-2 shrink-0">
             <a href="/download/ios"
-              class="flex items-center gap-2 bg-base-content text-base-100 px-4 py-2.5 rounded-xl hover:opacity-90 transition-opacity text-sm font-medium">
-              <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              class="flex items-center gap-1.5 bg-base-content text-base-100 px-3 py-2 rounded-xl hover:opacity-90 transition-opacity text-xs font-medium">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.18 1.27-2.16 3.8.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.37 2.78M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
               </svg>
               App Store
             </a>
             <a href="/download/android"
-              class="flex items-center gap-2 bg-base-content text-base-100 px-4 py-2.5 rounded-xl hover:opacity-90 transition-opacity text-sm font-medium">
-              <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              class="flex items-center gap-1.5 bg-base-content text-base-100 px-3 py-2 rounded-xl hover:opacity-90 transition-opacity text-xs font-medium">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3 20.5v-17c0-.83 1-.99 1.44-.49l15.08 8.5c.46.26.46.93 0 1.19L4.44 21c-.44.5-1.44.34-1.44-.5zM5 7.42v9.16L16.01 12 5 7.42z"/>
               </svg>
               Google Play
             </a>
           </div>
         </div>
-
-        <div class="grid grid-cols-5 gap-3 md:w-72 shrink-0">
-          {#each [
-            { icon: '/skills/shopping.png',    name: 'Shopping'    },
-            { icon: '/skills/prepping.png',    name: 'Prepping'    },
-            { icon: '/skills/making.png',      name: 'Making'      },
-            { icon: '/skills/ingredients.png', name: 'Ingredients' },
-            { icon: '/skills/techniques.png',  name: 'Techniques'  },
-          ] as skill}
-            <div class="flex flex-col items-center gap-2">
-              <div class="w-12 h-12 rounded-2xl bg-base-100 shadow-sm flex items-center justify-center">
-                <img src={skill.icon} alt={skill.name} class="w-7 h-7 object-contain" />
-              </div>
-              <span class="text-[10px] text-base-content/50 text-center leading-tight">{skill.name}</span>
-            </div>
-          {/each}
-        </div>
       </div>
     </div>
-  </article>
+  </div>
 {/if}
