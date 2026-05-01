@@ -23,7 +23,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@supabase/supabase-js": "^2.105.1",
-    "firebase": "^12.12.1"
+    "@supabase/supabase-js": "^2.105.1"
   }
 }

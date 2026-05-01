@@ -1,22 +1,13 @@
 <script lang="ts">
   import { page } from '$app/state';
   import { onMount } from 'svelte';
-  import { auth } from '$lib/firebase';
-  import { onAuthStateChanged, signOut, type User } from 'firebase/auth';
 
   let menuOpen = $state(false);
   let theme = $state('light');
-  let user = $state<User | null>(null);
 
   onMount(() => {
     theme = localStorage.getItem('theme') ?? 'light';
-    const unsubscribe = onAuthStateChanged(auth, (u) => { user = u; });
-    return unsubscribe;
   });
-
-  async function handleSignOut() {
-    await signOut(auth);
-  }
 
   function toggleTheme() {
     theme = theme === 'light' ? 'dark' : 'light';
@@ -85,20 +76,6 @@
             </svg>
           {/if}
         </button>
-
-        <!-- Sign in / Sign out -->
-        {#if user}
-          <button
-            onclick={handleSignOut}
-            class="hidden sm:inline-flex btn btn-ghost btn-sm rounded-full px-4 text-base-content/70"
-          >
-            Log out
-          </button>
-        {:else}
-          <a href="/signin" class="hidden sm:inline-flex btn btn-primary btn-sm rounded-full px-4">
-            Sign in
-          </a>
-        {/if}
 
         <!-- Mobile menu button -->
         <button

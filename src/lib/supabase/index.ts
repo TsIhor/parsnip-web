@@ -1,4 +1,3 @@
-import { auth } from '$lib/firebase';
 import { createClient } from '@supabase/supabase-js';
 
 export const supabase = createClient(
@@ -7,13 +6,6 @@ export const supabase = createClient(
 	{
     global: {
       fetch: (...args) => fetch(...args),
-    },
-    accessToken: async () => {
-      const user = auth.currentUser;
-      if (user) {
-        return await user.getIdToken(false);
-      }
-      return null;
     },
   }
 );
