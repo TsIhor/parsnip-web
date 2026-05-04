@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_f78951828b4ea06"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.0",
