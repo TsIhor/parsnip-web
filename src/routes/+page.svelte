@@ -1,13 +1,13 @@
 <script lang="ts">
-  import HeroSection          from './HeroSection.svelte';
-  import SocialProofSection   from './SocialProofSection.svelte';
-  import HowItWorksSection    from './HowItWorksSection.svelte';
-  import OnboardingFlowSection from './OnboardingFlowSection.svelte';
-  import SkillsSection        from './SkillsSection.svelte';
-  import FeaturedRecipesSection from './FeaturedRecipesSection.svelte';
-  import CategoriesSection    from './CategoriesSection.svelte';
-  import CtaSection           from './CtaSection.svelte';
-  import { reveal }           from '$lib/actions/reveal';
+  import HeroSection           from '$lib/components/home/HeroSection.svelte';
+  import SocialProofSection    from '$lib/components/home/SocialProofSection.svelte';
+  import HowItWorksSection     from '$lib/components/home/HowItWorksSection.svelte';
+  import OnboardingFlowSection from '$lib/components/home/OnboardingFlowSection.svelte';
+  import SkillsSection         from '$lib/components/home/SkillsSection.svelte';
+  import FeaturedRecipesSection from '$lib/components/home/FeaturedRecipesSection.svelte';
+  import CategoriesSection     from '$lib/components/home/CategoriesSection.svelte';
+  import CtaSection            from '$lib/components/home/CtaSection.svelte';
+  import { reveal }            from '$lib/actions/reveal';
 </script>
 
 <svelte:head>

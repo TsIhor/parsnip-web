@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"d:/Projects/Parsnip WEB/parsnip/src/lib/components/home\")",
+      "Bash(cp \"d:/Projects/Parsnip WEB/parsnip/src/routes/CategoriesSection.svelte\" \"d:/Projects/Parsnip WEB/parsnip/src/lib/components/home/\")",
+      "Bash(cp \"d:/Projects/Parsnip WEB/parsnip/src/routes/CtaSection.svelte\" \"d:/Projects/Parsnip WEB/parsnip/src/lib/components/home/\")",
+      "Bash(cp \"d:/Projects/Parsnip WEB/parsnip/src/routes/FeaturedRecipesSection.svelte\" \"d:/Projects/Parsnip WEB/parsnip/src/lib/components/home/\")",
+      "Bash(cp \"d:/Projects/Parsnip WEB/parsnip/src/routes/HeroSection.svelte\" \"d:/Projects/Parsnip WEB/parsnip/src/lib/components/home/\")",
+      "Bash(npx svelte-check *)"
+    ]
+  }
+}
